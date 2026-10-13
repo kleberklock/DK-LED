@@ -22,7 +22,7 @@
   <link rel="icon" type="image/png" href="assets/img/logo-dk-simbolo.jpg">
 
   <!-- Folha de Estilos Ultra-Minimalista -->
-  <link rel="stylesheet" href="css/futurista.css?v=2">
+  <link rel="stylesheet" href="css/futurista.css?v=3">
 </head>
 
 <body>
@@ -41,7 +41,7 @@
           </a>
 
           <nav>
-            <ul class="nav-menu-links">
+            <ul class="nav-menu-links" id="navMenu">
               <li><a href="#inicio">Início</a></li>
               <li><a href="#metricas">Métricas</a></li>
               <li><a href="#comparativo">Antes &amp; Depois</a></li>
@@ -58,6 +58,10 @@
             </svg>
             <span>WhatsApp</span>
           </a>
+
+          <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu">
+            <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
         </div>
       </div>
     </header>
@@ -310,7 +314,7 @@
   </div>
 
   <!-- Script Limpo e Otimizado -->
-  <script src="js/futurista.js"></script>
+  <script src="js/futurista.js?v=3"></script>
 </body>
 
 </html>

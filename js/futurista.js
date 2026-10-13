@@ -4,10 +4,36 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initMobileMenu();
   initHeroOpticalDeck();
   initComparisonScanner();
   initMetricCounters();
 });
+
+/* ==========================================================================
+   0. Menu Mobile (Hambúrguer)
+   ========================================================================== */
+function initMobileMenu() {
+  const nav = document.querySelector('.minimal-nav');
+  const toggle = document.getElementById('navToggle');
+  if (!nav || !toggle) return;
+
+  const setOpen = (open) => {
+    nav.classList.toggle('menu-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  };
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setOpen(!nav.classList.contains('menu-open'));
+  });
+
+  nav.querySelectorAll('.nav-menu-links a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('click', (e) => { if (!nav.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 860) setOpen(false); });
+}
 
 /* ==========================================================================
    1. Showcase Interativo de Bancada (Optical Deck / Sem Vídeo)
@@ -37,6 +63,7 @@ function initHeroOpticalDeck() {
 
   // 1.3 Efeito de Perspectiva 3D Suave ao Mover o Cursor
   card.addEventListener('mousemove', (e) => {
+    if (!window.matchMedia('(hover: hover)').matches) return;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
