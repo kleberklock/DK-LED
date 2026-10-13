@@ -1,0 +1,788 @@
+/* ==========================================================================
+   DK LED - REDESIGN ULTRA-MINIMALISTA & FUTURISTA
+   Aesthetics: Pure Luxury Dark Tech (Estilo Apple / Linear / Tesla)
+   Zero Poluição Visual & Máxima Fluidez
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Cores Base: Preto Profundo e Neutros */
+  --bg-black: #000000;
+  --bg-surface: #07090e;
+  --bg-card: rgba(255, 255, 255, 0.02);
+  --bg-card-hover: rgba(255, 255, 255, 0.04);
+
+  /* Acento Único e Refinado: Cyan Puro */
+  --accent-cyan: #00e5ff;
+  --accent-cyan-glow: rgba(0, 229, 255, 0.25);
+  --accent-blue: #2563eb;
+
+  /* Bordas Ultrafinas & Sutis (Sem poluição de linhas grossas) */
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --border-cyan: rgba(0, 229, 255, 0.3);
+
+  /* Tipografia */
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+
+  --text-pure: #ffffff;
+  --text-primary: #e5e7eb;
+  --text-muted: #8b949e;
+  --text-subtle: #4b5563;
+
+  /* Layout */
+  --container-width: 1100px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+
+  /* Transições Fluidas */
+  --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 0.3s var(--ease-fluid);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg-black);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Brilho de Fundo Suave & Difuso (Sem linhas nem poluição de grids) */
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ambient-glow::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70vw;
+  height: 50vh;
+  max-width: 900px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.06) 0%, rgba(37, 99, 235, 0.02) 40%, transparent 70%);
+  filter: blur(100px);
+}
+
+.ambient-glow::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  right: 15%;
+  width: 50vw;
+  height: 40vh;
+  max-width: 600px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.04) 0%, transparent 60%);
+  filter: blur(120px);
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* ==========================================================================
+   Navegação Ultra-Minimalista
+   ========================================================================== */
+.minimal-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding-block: 0.85rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all var(--transition);
+}
+
+.nav-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+}
+
+.nav-logo-img {
+  height: 68px;
+  width: auto;
+  object-fit: contain;
+  background: #000000;
+  border-radius: 4px;
+  transition: transform var(--transition);
+  display: block;
+}
+
+.nav-logo-img:hover {
+  transform: scale(1.02);
+}
+
+.nav-menu-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-menu-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 400;
+  transition: color var(--transition);
+}
+
+.nav-menu-links a:hover {
+  color: var(--text-pure);
+}
+
+.btn-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-pure);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.52rem 1.15rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.btn-nav-cta .whatsapp-icon {
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.btn-nav-cta:hover {
+  background: rgba(37, 211, 102, 0.12);
+  color: #ffffff;
+  border-color: rgba(37, 211, 102, 0.6);
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-nav-cta:hover .whatsapp-icon {
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   Hero Minimalista Monolítico
+   ========================================================================== */
+.hero-minimal {
+  padding-top: clamp(8rem, 15vh, 11rem);
+  padding-bottom: 4rem;
+  text-align: center;
+}
+
+.hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 1.8rem;
+}
+
+.pulse-dot-cyan {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+.hero-main-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--text-pure);
+  margin-bottom: 1.4rem;
+}
+
+.hero-main-title .gradient-text {
+  background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-clean-lead {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 640px;
+  margin-inline: auto;
+  line-height: 1.6;
+  margin-bottom: 2.4rem;
+}
+
+.hero-cta-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+}
+
+.btn-primary-glow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #ffffff;
+  color: #000000;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.9rem 1.8rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: all var(--transition);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+
+.btn-primary-glow:hover {
+  background: var(--accent-cyan);
+  box-shadow: 0 6px 30px rgba(0, 229, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  font-weight: 400;
+  padding: 0.9rem 1.5rem;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.btn-secondary-link:hover {
+  color: var(--text-pure);
+}
+
+/* ==========================================================================
+   Showcase Monolítico Futurista (Encaixe Perfeito 100% Visível / Sem Cortes)
+   ========================================================================== */
+.hero-monolith-stage {
+  perspective: 1400px;
+  width: 100%;
+  max-width: 580px;
+  margin-inline: auto;
+  position: relative;
+  text-align: center;
+}
+
+.hero-stage-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #020408;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(0, 229, 255, 0.05);
+  transition: transform 0.28s var(--ease-fluid), border-color var(--transition);
+  will-change: transform;
+}
+
+.hero-stage-card:hover {
+  border-color: rgba(0, 229, 255, 0.25);
+}
+
+.stage-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000000;
+}
+
+.stage-image-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.stage-image-layer.active {
+  opacity: 1;
+}
+
+/* Base de Luz Ambiente Difusa (Projeção Luminosa do Painel de LED) */
+.stage-ambient-pedestal {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 80px;
+  background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.18) 0%, rgba(37, 99, 235, 0.06) 45%, transparent 75%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Seletor Minimalista Flutuante de Alta Precisão */
+.stage-controls-dock {
+  margin-top: 1.2rem;
+  position: relative;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(10, 14, 24, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  padding: 0.4rem 0.6rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.stage-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.tab-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-subtle);
+  transition: all var(--transition);
+}
+
+.stage-tab-btn:hover {
+  color: #ffffff;
+}
+
+.stage-tab-btn.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.stage-tab-btn.active .tab-indicator-dot {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+/* ==========================================================================
+   Métricas Flutuantes: 1 Linha Pura Sem Caixas ou Bordas Pesadas
+   ========================================================================== */
+.metrics-strip {
+  padding-block: 4rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.metrics-horizontal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  gap: 2rem;
+}
+
+.metric-item-num {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 700;
+  color: var(--text-pure);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.03em;
+}
+
+.metric-item-num .cyan-sign {
+  color: var(--accent-cyan);
+}
+
+.metric-item-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   Scanner Antes & Depois: Sem Poluição, Mira Suave
+   ========================================================================== */
+.scanner-minimal-section {
+  padding-block: 6rem;
+}
+
+.section-head-clean {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-head-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-pure);
+  margin-bottom: 0.5rem;
+}
+
+.section-head-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 500px;
+  margin-inline: auto;
+}
+
+.scanner-frame-clean {
+  max-width: 900px;
+  margin-inline: auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  background: #000;
+}
+
+.scanner-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  user-select: none;
+  cursor: ew-resize;
+  overflow: hidden;
+}
+
+.scanner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.scanner-img-before {
+  z-index: 2;
+  clip-path: inset(0 50% 0 0);
+  will-change: clip-path;
+}
+
+.scanner-img-after {
+  z-index: 1;
+}
+
+/* Linha Divisória Minimalista Branca e Ciano */
+.scanner-divider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1.5px;
+  background: #ffffff;
+  box-shadow: 0 0 12px var(--accent-cyan);
+  z-index: 3;
+  transform: translateX(-50%);
+  pointer-events: none;
+  will-change: left;
+}
+
+.scanner-handle-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  pointer-events: none;
+  will-change: left;
+}
+
+.scanner-tag-clean {
+  position: absolute;
+  top: 1.2rem;
+  z-index: 5;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-pure);
+  pointer-events: none;
+}
+
+.scanner-tag-clean.tag-left { left: 1.2rem; }
+.scanner-tag-clean.tag-right { right: 1.2rem; }
+
+.scanner-footer-caption {
+  padding: 0.9rem 1.4rem;
+  background: #05070a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-subtle);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ==========================================================================
+   Processo Linear Minimalista (Sem cartões poluídos)
+   ========================================================================== */
+.process-minimal-section {
+  padding-block: 5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.process-steps-flex {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.step-minimal-item {
+  position: relative;
+}
+
+.step-num-minimal {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--accent-cyan);
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.step-title-minimal {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-pure);
+  margin-bottom: 0.4rem;
+}
+
+.step-desc-minimal {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Galeria de Provas Reais (Limpa, 3 Imagens Grandes)
+   ========================================================================== */
+.proofs-minimal-section {
+  padding-block: 5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.proofs-three-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.proof-img-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: #000;
+  aspect-ratio: 4 / 3;
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.proof-img-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+}
+
+.proof-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.proof-card-caption {
+  padding: 0.8rem 1rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: #05070a;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ==========================================================================
+   Contato & Conversão Minimalista (Direto e Elegante)
+   ========================================================================== */
+.cta-minimal-section {
+  padding-block: 6rem 8rem;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.cta-box-clean {
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+.cta-title-clean {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-pure);
+  margin-bottom: 0.8rem;
+}
+
+.cta-desc-clean {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.cta-buttons-clean {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Rodapé Limpo
+   ========================================================================== */
+.minimal-footer {
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.82rem;
+  color: var(--text-subtle);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-logo-img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  background: #000000;
+  border-radius: 4px;
+  opacity: 0.95;
+  transition: opacity var(--transition);
+  display: block;
+}
+
+.footer-logo-img:hover {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Mobile Responsivo
+   ========================================================================== */
+@media (max-width: 860px) {
+  .nav-logo-img {
+    height: 50px;
+  }
+
+  .footer-logo-img {
+    height: 40px;
+  }
+
+  .nav-menu-links {
+    display: none;
+  }
+
+  .metrics-horizontal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1rem;
+  }
+
+  .process-steps-flex {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .proofs-three-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
